@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerMain : MonoBehaviour
 {
     [Header("Health")]
@@ -11,12 +11,15 @@ public class PlayerMain : MonoBehaviour
     [SerializeField] private int damagePlayer;
     [Header("Mana")]
     [SerializeField] private int mana = 20;
+    public Image ManaImage;
+
     [Header("Critic")]
     [SerializeField] private int critRate = 20;
     [SerializeField] private int critDamage = 120;
 
     [Header("Heal")]
     private int healPlayer;
+    public Image healthBarImage;
 
     [Header("Boss Reference")]
     public EnemyMain boss;
@@ -27,10 +30,14 @@ public class PlayerMain : MonoBehaviour
         currentHealthPlayer = maxHealthPlayer;
         MegaDamageToEnemy();
     }
-
+    private void Update()
+    {
+        healthBarImage.fillAmount = (float)currentHealthPlayer / maxHealthPlayer;
+        ManaImage.fillAmount = (float)mana / 20;
+    }
     public void damageToEnemy()
     {
-        damagePlayer = Random.Range(150, 201);
+        damagePlayer = Random.Range(250, 401);
         // Ajouter la logique de critique
         if (Random.Range(1, 101) <= critRate)
         {
@@ -54,7 +61,7 @@ public class PlayerMain : MonoBehaviour
     {
         currentHealthPlayer -= damage;
         maxHealthPlayer -= damage * 10 / 100;
-        print(maxHealthPlayer);
+        healthBarImage.fillAmount = (float)currentHealthPlayer / maxHealthPlayer;
         if (currentHealthPlayer <= 0)
         {
             // stopper le jeu
@@ -72,7 +79,7 @@ public class PlayerMain : MonoBehaviour
         if (mana - manaCost >= 0)
         {
             mana -= manaCost;
-            damagePlayer = Random.Range(400, 601);
+            damagePlayer = Random.Range(500, 701);
             if (Random.Range(1, 101) <= critRate)
             {
                 hasCrit = true;

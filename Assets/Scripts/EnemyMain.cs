@@ -5,19 +5,26 @@ using UnityEngine;
 public class EnemyMain : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private int maxHealthEnemy = 2000;
+    [SerializeField] private int maxHealthEnemy = 20000;
     public int currentHealthEnemy;
     [Header("Damage")]
     [SerializeField] private int damageEnemy;
     [Header("Player")]
     public PlayerMain player;
 
-    /*private void Start()
+    private void Start()
     {
         currentHealthEnemy = maxHealthEnemy;
-        damageToPlayer();
-    }*/
-
+    }
+    public void bossTurn()
+    {
+        if (currentHealthEnemy > 10000)
+            damageToPlayer();
+        else if (currentHealthEnemy > 3000)
+            damageToPlayerFOIS2();
+        else
+            HealBoss();
+    }
     public void damageToPlayer()
     {
         damageEnemy = Random.Range(150, 201);
@@ -33,6 +40,30 @@ public class EnemyMain : MonoBehaviour
         {
             
         }
+    }
+    public void damageToPlayerFOIS2()
+    {
+        damageEnemy = Random.Range(300, 401);
+        
+        player.TakeDamage(damageEnemy);
+        print("L'ennemi ta mis:" + damageEnemy);
+        print(player.currentHealthPlayer);
+        if (player.currentHealthPlayer <= 0)
+        {
+         //victoire
+        }
+        else
+        {
+            
+        }
+    }
+    public void HealBoss()
+    {
+        int healBoss;
+        healBoss = Random.Range(300,1001);
+        currentHealthEnemy += healBoss;
+        if (currentHealthEnemy > maxHealthEnemy)
+            currentHealthEnemy = maxHealthEnemy;
     }
     public void TakeDamage(int damage)
     {
