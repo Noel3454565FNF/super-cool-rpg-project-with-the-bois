@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
 public class UI8Manager : MonoBehaviour
 {
 
@@ -40,9 +39,9 @@ public class UI8Manager : MonoBehaviour
 
     private void Die()
     {
-        // Logique de mort (désactivation du GameObject, animation de mort, etc.)
+        // Logique de mort (dÃ©sactivation du GameObject, animation de mort, etc.)
         Debug.Log($"{gameObject.name} est mort.");
-        Destroy(gameObject); // ou toute autre logique de mort appropriée
+        Destroy(gameObject); // ou toute autre logique de mort appropriÃ©e
     }
 
     public int GetCurrentHealth()
@@ -86,25 +85,3 @@ public class UI8Manager : MonoBehaviour
         }
     }
 }
-
-=======
-public class UIManager : MonoBehaviour
-{
-    public GameObject panelBaseAttack;
-    public GameObject panelManaAttack;
-
-
-    public void OnClickPanelBase()
-    {
-        panelBaseAttack.SetActive(true);
-        panelManaAttack.SetActive(false);
-
-    }
-    public void OnClickPanelMana()
-    {
-        panelBaseAttack.SetActive(false);
-        panelManaAttack.SetActive(true);
-
-    }
-}
->>>>>>> GauthierNew
