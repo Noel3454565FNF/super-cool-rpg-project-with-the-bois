@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Différents états du jeu
-public enum battleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
+public enum battleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, PAUSE }
 
 public class battleSystem : MonoBehaviour
 {
     // Singleton
     public static battleSystem Instance;
 
-    // Variable pour le préfab du joueur
-    public GameObject playerPrefab;
+    [Header("Enemy Setup")]
     // Variable pour le préfab de l'ennemi
     public GameObject enemyPrefab;
-
-    // Variable pour l'emplacement initial du joueur
-    public Transform playerBattleStation;
     // Variable pour l'emplacement initial de l'ennemi
     public Transform enemyBattleStation;
 
+    [Header("Battle State")]
     // Variable pour gérer le current state du jeu
     public battleState currentState;
+
+    [Header("Script References")]
+    public PlayerMain player;
+    public EnemyMain boss;
 
 
     // Void Start() = Lancement du jeu
@@ -45,12 +46,35 @@ public class battleSystem : MonoBehaviour
     }
 
     // Void SetupBattle() = Initialisation du jeu (placement du joueur et de l'ennemi, ...)
-    void SetupBattle()
+    public void SetupBattle()
     {
-        // Permet de placer le préfab du joueur à sa position initiale au début du jeu
-        Instantiate(playerPrefab, playerBattleStation);
         // Permet de placer le préfab de l'ennemi à sa position initiale au début du jeu
         Instantiate(enemyPrefab, enemyBattleStation);
     }
 
+    public void EndWon()
+    {
+        currentState = battleState.WON;
+    }
+
+    public void EndLost()
+    {
+        currentState = battleState.LOST;
+    }
+
+    public void PlayerTurn()
+    {
+        currentState = battleState.PLAYERTURN;
+        // Afficher buttons
+    }
+
+    public void EnemyTurn()
+    {
+        currentState = battleState.ENEMYTURN;
+    }
+
+    public void PauseGame()
+    {
+        currentState = battleState.PAUSE;
+    }
 }
