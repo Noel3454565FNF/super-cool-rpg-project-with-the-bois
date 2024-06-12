@@ -23,6 +23,7 @@ public class battleSystem : MonoBehaviour
     // Variable pour gérer le current state du jeu
     public battleState currentState;
 
+    public QTE qte;
 
     // Void Start() = Lancement du jeu
     void Start()
