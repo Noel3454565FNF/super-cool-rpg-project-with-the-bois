@@ -10,7 +10,7 @@ public class PlayerMain : MonoBehaviour
     [Header("Damage")]
     [SerializeField] private int damagePlayer;
     [Header("Mana")]
-    [SerializeField] private int mana = 20;
+    [SerializeField] public int mana = 20;
     public Image ManaImage;
 
     [Header("Critic")]
@@ -38,7 +38,6 @@ public class PlayerMain : MonoBehaviour
     public void damageToEnemy()
     {
         damagePlayer = Random.Range(250, 401);
-        // Ajouter la logique de critique
         if (Random.Range(1, 101) <= critRate)
         {
             damagePlayer = Mathf.RoundToInt(damagePlayer * (critDamage / 100f));
