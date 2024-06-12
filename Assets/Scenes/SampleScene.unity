@@ -1151,6 +1151,10 @@ GameObject:
   - component: {fileID: 1607247653}
   m_Layer: 5
   m_Name: Text (TMP)
+  - component: {fileID: 1816314358}
+  - component: {fileID: 1816314357}
+  m_Layer: 0
+  m_Name: Battle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1266,6 +1270,14 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1607247654
 CanvasRenderer:
+  m_GameObject: {fileID: 1816314356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c044ed1901f644499633ec5463fa81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1816314358
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1298,6 +1310,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630476521}
+  m_GameObject: {fileID: 1816314356}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1480,6 +1494,9 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868413007}
   m_CullTransparentMesh: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1490,3 +1507,4 @@ SceneRoots:
   - {fileID: 1284660018}
   - {fileID: 1472205615}
   - {fileID: 904393419}
+  - {fileID: 1816314358}
