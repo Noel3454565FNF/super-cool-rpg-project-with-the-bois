@@ -2693,6 +2693,8 @@ GameObject:
   - component: {fileID: 1860308563}
   - component: {fileID: 1860308566}
   - component: {fileID: 1860308565}
+  - component: {fileID: 1860308568}
+  - component: {fileID: 1860308567}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -2804,6 +2806,39 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!111 &1860308567
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860308562}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &1860308568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860308562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3135a45f6eff9f4b89b630fbe7b8d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gmb: {fileID: 1860308562}
+  idle: {fileID: 7400000, guid: 721dee6bbdbea8843af3e3add460d611, type: 2}
+  attack: {fileID: 7400000, guid: b97820b7a8bde0344b247f8d2672720c, type: 2}
+  damage: {fileID: 7400000, guid: 20d69a1db771c8a42aca787b82b75605, type: 2}
+  death: {fileID: 7400000, guid: d51be4f285d28fe45a99066acdcb6013, type: 2}
+  anim: {fileID: 1860308567}
 --- !u!1 &1938522378
 GameObject:
   m_ObjectHideFlags: 0
