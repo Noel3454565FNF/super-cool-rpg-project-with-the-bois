@@ -78,12 +78,12 @@ public class PlayerMain : MonoBehaviour
         if (mana - manaCost >= 0)
         {
             mana -= manaCost;
-            damagePlayer = Random.Range(500, 701);
+            damagePlayer = Random.Range(800, 1001);
             if (Random.Range(1, 101) <= critRate)
             {
                 hasCrit = true;
                 print(hasCrit);
-                damagePlayer = Mathf.RoundToInt(damagePlayer * (critDamage / 100f));
+                damagePlayer += Mathf.RoundToInt(damagePlayer * (critDamage / 100f));
             }
             else
             {
