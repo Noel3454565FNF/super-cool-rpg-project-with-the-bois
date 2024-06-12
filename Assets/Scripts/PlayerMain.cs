@@ -24,6 +24,9 @@ public class PlayerMain : MonoBehaviour
     [Header("Boss Reference")]
     public EnemyMain boss;
 
+    [Header("Battle System Reference")]
+    public battleSystem battleSystem;
+
 
     private void Start()
     {
@@ -49,11 +52,11 @@ public class PlayerMain : MonoBehaviour
             mana = 20;
         if (boss.currentHealthEnemy <= 0)
         {
-            // victoire
+            battleSystem.EndWon();
         }
         else
         {
-            // continuer le jeu
+            battleSystem.EnemyTurn();
         }
     }
 
@@ -64,11 +67,11 @@ public class PlayerMain : MonoBehaviour
         healthBarImage.fillAmount = (float)currentHealthPlayer / maxHealthPlayer;
         if (currentHealthPlayer <= 0)
         {
-            // stopper le jeu
+            battleSystem.EndWon();
         }
         else
         {
-            // passer à la phase suivante
+            battleSystem.PlayerTurn();
         }
     }
 

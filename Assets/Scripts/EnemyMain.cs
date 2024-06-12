@@ -11,6 +11,8 @@ public class EnemyMain : MonoBehaviour
     [SerializeField] private int damageEnemy;
     [Header("Player")]
     public PlayerMain player;
+    [Header("Battle System Reference")]
+    public battleSystem battleSystem;
 
     private void Start()
     {
@@ -34,11 +36,11 @@ public class EnemyMain : MonoBehaviour
         print(player.currentHealthPlayer);
         if (player.currentHealthPlayer <= 0)
         {
-         //victoire
+            battleSystem.EndLost();
         }
         else
         {
-            
+            battleSystem.PlayerTurn();
         }
     }
     public void damageToPlayerFOIS2()
@@ -50,11 +52,11 @@ public class EnemyMain : MonoBehaviour
         print(player.currentHealthPlayer);
         if (player.currentHealthPlayer <= 0)
         {
-         //victoire
+            battleSystem.EndLost();
         }
         else
         {
-            
+            battleSystem.PlayerTurn();
         }
     }
     public void HealBoss()
@@ -70,11 +72,11 @@ public class EnemyMain : MonoBehaviour
         currentHealthEnemy -= damage;
         if(currentHealthEnemy <= 0)
         {
-            //stopper le jeu
+            battleSystem.EndWon();
         }
         else
         {
-            //passer à la phase suivante
+            battleSystem.EnemyTurn();
         }
     }
 
