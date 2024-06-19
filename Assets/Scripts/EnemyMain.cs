@@ -14,15 +14,19 @@ public class EnemyMain : MonoBehaviour
 
     public Slider slider;
 
+    [SerializeField] private ANIMMANAGER enemyAnim;
+
 
     public void Update()
     {
         slider.value = (float)currentHealthEnemy / (float)maxHealthEnemy;
     }
+
     private void Start()
     {
         currentHealthEnemy = maxHealthEnemy;
     }
+
     public void bossTurn()
     {
         if (currentHealthEnemy > 10000) StartCoroutine(damageToPlayer(1));
@@ -37,8 +41,11 @@ public class EnemyMain : MonoBehaviour
             
 
     }
+
     public IEnumerator damageToPlayer(int multiplier)
     {
+        StartCoroutine(enemyAnim.attackAnim());
+
         yield return new WaitForSeconds(1f);
 
         damageEnemy = Random.Range(101 * multiplier, 151 * multiplier);
@@ -70,6 +77,4 @@ public class EnemyMain : MonoBehaviour
             //passer à la phase suivante
         }
     }
-
-
 }

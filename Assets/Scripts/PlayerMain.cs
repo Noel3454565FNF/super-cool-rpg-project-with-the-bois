@@ -24,10 +24,11 @@ public class PlayerMain : MonoBehaviour
     [Header("Boss Reference")]
     public EnemyMain boss;
 
-    [Header("QTE")]
+    [Header("Léon")]
     [SerializeField] private QTE qte;
     private int damageToTake;
     private int manaGain;
+    [SerializeField] private ANIMMANAGER playerAnim;
 
     private void Start()
     {
@@ -42,7 +43,10 @@ public class PlayerMain : MonoBehaviour
             if (success)
             {
                 damagePlayer = (int)(damagePlayer * 1.1);
-                manaGain = 8;
+                if (manaGain > 0)
+                {
+                    manaGain = 8;
+                }
             }
 
             boss.TakeDamage(damagePlayer);
@@ -89,6 +93,7 @@ public class PlayerMain : MonoBehaviour
 
     public void damageToEnemy()
     {
+        //StartCoroutine(playerAnim.attackAnim());
         manaGain = 5;
 
         damagePlayer = Random.Range(350, 501);
