@@ -1076,6 +1076,7 @@ MonoBehaviour:
   damage: {fileID: 7400000, guid: 20d69a1db771c8a42aca787b82b75605, type: 2}
   death: {fileID: 7400000, guid: d51be4f285d28fe45a99066acdcb6013, type: 2}
   anim: {fileID: 1860308567}
+  BossDeathTime: 2
 --- !u!1001 &1973977936
 PrefabInstance:
   m_ObjectHideFlags: 0
