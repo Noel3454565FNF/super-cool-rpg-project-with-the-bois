@@ -16,6 +16,7 @@ public class battleSystem : MonoBehaviour
 
     public battleState currentState;
 
+    public QTE qte;
 
     void Start()
     {

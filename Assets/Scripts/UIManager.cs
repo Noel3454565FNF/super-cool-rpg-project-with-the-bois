@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public GameObject panelBaseAttack;
     public GameObject panelManaAttack;
+
     public PlayerMain mana;
     public TextMeshProUGUI manaText;
 
