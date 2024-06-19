@@ -636,6 +636,7 @@ MonoBehaviour:
   healthBarImage: {fileID: 120322044}
   boss: {fileID: 1860308563}
   qte: {fileID: 1274735738}
+  playerAnim: {fileID: 0}
 --- !u!4 &1673231738
 Transform:
   m_ObjectHideFlags: 0
@@ -688,6 +689,7 @@ MonoBehaviour:
   currentHealthEnemy: 0
   player: {fileID: 1673231737}
   slider: {fileID: 664228805}
+  enemyAnim: {fileID: 1860308568}
 --- !u!4 &1860308564
 Transform:
   m_ObjectHideFlags: 0
@@ -926,7 +928,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e43d818b572f10148acfa9cee86dd6b3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.198
   m_Pitch: 1
   Loop: 0
   Mute: 0

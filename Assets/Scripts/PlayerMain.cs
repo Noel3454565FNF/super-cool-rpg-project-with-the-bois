@@ -20,6 +20,9 @@ public class PlayerMain : MonoBehaviour
     [Header("Heal")]
     private int healPlayer;
     public Image healthBarImage;
+    [Header("SFX")]
+    public AudioClip hitSFX;
+    public AudioSource playerAudioSource;
 
     [Header("Boss Reference")]
     public EnemyMain boss;
@@ -61,6 +64,7 @@ public class PlayerMain : MonoBehaviour
             {
                 // continuer le jeu
             }
+            playerAudioSource.PlayOneShot(hitSFX);
             battleSystem.Instance.EnemyTurn();
         }
         else
