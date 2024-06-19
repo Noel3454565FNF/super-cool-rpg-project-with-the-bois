@@ -8,11 +8,7 @@ public class ANIMMANAGER : MonoBehaviour
 {
 
     public GameObject gmb;
-    public AnimationClip idle;
-    public AnimationClip attack;
-    public AnimationClip damage;
-    public AnimationClip death;
-    public Animation anim;
+    public Animator anim;
 
     private string prefName = null;
 
@@ -37,8 +33,7 @@ public class ANIMMANAGER : MonoBehaviour
             {
 
                 prefName = gameObject.name;
-                anim.clip = idle;
-                anim.Play();
+                anim.Play("idle");
             }
         }
     }
@@ -46,18 +41,13 @@ public class ANIMMANAGER : MonoBehaviour
 
     public void returntoidle()
     {
-        anim.Stop();
-        anim.clip = idle;
-        anim.Play();
+        anim.Play("idle");
     }
 
 
     public IEnumerator attackAnim()
     {
-        //Debug.Log("attack boss");
-        anim.Stop();
-        anim.clip = attack;
-        anim.Play();
+        anim.Play("attack");
         customAnimPlaying = true;
         if (prefName == "Boss")
         {
@@ -75,9 +65,7 @@ public class ANIMMANAGER : MonoBehaviour
 
     public IEnumerator damageAnim()
     {
-        anim.Stop();
-        anim.clip = damage;
-        anim.Play();
+        anim.Play("damage");
         customAnimPlaying = true;
         if (prefName == "Boss")
         {
@@ -95,29 +83,27 @@ public class ANIMMANAGER : MonoBehaviour
 
     public void deathAnim()
     {
-        anim.Stop();
-        anim.clip = death;
-        anim.Play();
+        anim.Play("death");
         customAnimPlaying = true;
         deathcheck = true;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (customAnimPlaying == true && deathcheck == false)
-        {
-            if (anim.isPlaying == false)
-            {
-                returntoidle();
-            }
-        }
-        if (customAnimPlaying == true && deathcheck == true)
-        {
-            if (anim.isPlaying == false)
-            {
-                anim.Stop();
-            }
-        }
-    }
+    //void Update()
+    //{
+    //    if (customAnimPlaying == true && deathcheck == false)
+    //    {
+    //        if (anim.isPlaying == false)
+    //        {
+    //            returntoidle();
+    //        }
+    //    }
+    //    if (customAnimPlaying == true && deathcheck == true)
+    //    {
+    //        if (anim.isPlaying == false)
+    //        {
+    //            anim.Stop();
+    //        }
+    //    }
+    //}
 }

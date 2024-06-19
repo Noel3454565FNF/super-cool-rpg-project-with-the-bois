@@ -143,6 +143,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1673231737}
+    - target: {fileID: 2668255846404145188, guid: 5eb4e924c70f88d42bebcbca8e14af38, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775845869430747711, guid: 5eb4e924c70f88d42bebcbca8e14af38, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.22754
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775845869430747711, guid: 5eb4e924c70f88d42bebcbca8e14af38, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -265
+      objectReference: {fileID: 0}
     - target: {fileID: 5162326550828535749, guid: 5eb4e924c70f88d42bebcbca8e14af38, type: 3}
       propertyPath: m_SizeDelta.x
       value: 463.7039
@@ -636,6 +648,7 @@ MonoBehaviour:
   healthBarImage: {fileID: 120322044}
   boss: {fileID: 1860308563}
   qte: {fileID: 1274735738}
+  playerAnim: {fileID: 0}
 --- !u!4 &1673231738
 Transform:
   m_ObjectHideFlags: 0
@@ -664,7 +677,6 @@ GameObject:
   - component: {fileID: 1860308566}
   - component: {fileID: 1860308565}
   - component: {fileID: 1860308568}
-  - component: {fileID: 1860308567}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -688,6 +700,7 @@ MonoBehaviour:
   currentHealthEnemy: 0
   player: {fileID: 1673231737}
   slider: {fileID: 664228805}
+  enemyAnim: {fileID: 1860308568}
 --- !u!4 &1860308564
 Transform:
   m_ObjectHideFlags: 0
@@ -776,21 +789,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!111 &1860308567
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860308562}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &1860308568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,11 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gmb: {fileID: 1860308562}
-  idle: {fileID: 7400000, guid: 721dee6bbdbea8843af3e3add460d611, type: 2}
-  attack: {fileID: 7400000, guid: b97820b7a8bde0344b247f8d2672720c, type: 2}
-  damage: {fileID: 7400000, guid: 20d69a1db771c8a42aca787b82b75605, type: 2}
-  death: {fileID: 7400000, guid: d51be4f285d28fe45a99066acdcb6013, type: 2}
-  anim: {fileID: 1860308567}
+  anim: {fileID: 1860308566}
   BossDeathTime: 2
 --- !u!1001 &1973977936
 PrefabInstance:
