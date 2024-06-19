@@ -26,14 +26,22 @@ public class QTE : MonoBehaviour
     [SerializeField] private RectTransform Slider;
     private float SliderWidth;
 
+    private Color green = new Color(0.5f, 1, 0.58f);
+    private Color red = new Color(1, 0.5f, 0.58f);
+
     public void LaunchQTE(PlayerMain PU, bool isAnAttack, float TimeEnd, float QTETimeStart, float Duration)
     {
-        Debug.Log("Launched");
+        if (battleSystem.Instance.currentState == battleState.PLAYERTURN)
+        {
+            GreenZone.gameObject.GetComponent<Image>().color = green;
+        } 
+        else
+        {
+            GreenZone.gameObject.GetComponent<Image>().color = red;
+        }
 
         UIManager.Instance.HidePanels();
         qte.SetActive(true);
-
-        Debug.Log("QTE activated");
 
         SliderWidth = Slider.rect.width;
         width = Background.rect.width;
@@ -55,7 +63,7 @@ public class QTE : MonoBehaviour
             timer += Time.deltaTime;
             avancement = timer / TimeEnd;
 
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 SpaceHasBeenClicked = true;
                 if (timer > QTETimeStart && timer < QTETimeStart + Duration)
