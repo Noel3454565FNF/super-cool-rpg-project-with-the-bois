@@ -24,9 +24,11 @@ public class PlayerMain : MonoBehaviour
     [Header("Boss Reference")]
     public EnemyMain boss;
 
-    [Header("QTE")]
+    [Header("Léon")]
     [SerializeField] private QTE qte;
     private int damageToTake;
+    private int manaGain;
+    [SerializeField] private ANIMMANAGER playerAnim;
 
     private void Start()
     {
@@ -41,10 +43,14 @@ public class PlayerMain : MonoBehaviour
             if (success)
             {
                 damagePlayer = (int)(damagePlayer * 1.1);
+                if (manaGain > 0)
+                {
+                    manaGain = 8;
+                }
             }
 
             boss.TakeDamage(damagePlayer);
-            mana += 5;
+            mana += manaGain;
             if (mana > 20)
                 mana = 20;
             if (boss.currentHealthEnemy <= 0)
@@ -87,6 +93,9 @@ public class PlayerMain : MonoBehaviour
 
     public void damageToEnemy()
     {
+        //StartCoroutine(playerAnim.attackAnim());
+        manaGain = 5;
+
         damagePlayer = Random.Range(350, 501);
         if (Random.Range(1, 101) <= critRate)
         {
@@ -105,6 +114,8 @@ public class PlayerMain : MonoBehaviour
 
     public void MegaDamageToEnemy()
     {
+        manaGain = 0;
+
         int manaCost = 10;
         if (mana - manaCost >= 0)
         {
@@ -115,7 +126,7 @@ public class PlayerMain : MonoBehaviour
                 damagePlayer += Mathf.RoundToInt(damagePlayer * (critDamage / 100f));
             }
 
-            qte.LaunchQTE(this, true, 1.5f, 0.5f, 0.4f);
+            qte.LaunchQTE(this, true, 1.5f, 0.6f, 0.2f);
             //print(damagePlayer);
         }
     }

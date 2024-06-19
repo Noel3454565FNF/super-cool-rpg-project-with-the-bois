@@ -52,8 +52,9 @@ public class ANIMMANAGER : MonoBehaviour
     }
 
 
-    IEnumerator attackAnim()
+    public IEnumerator attackAnim()
     {
+        //Debug.Log("attack boss");
         anim.Stop();
         anim.clip = attack;
         anim.Play();
@@ -72,7 +73,7 @@ public class ANIMMANAGER : MonoBehaviour
 
     }
 
-    IEnumerator damageAnim()
+    public IEnumerator damageAnim()
     {
         anim.Stop();
         anim.clip = damage;
