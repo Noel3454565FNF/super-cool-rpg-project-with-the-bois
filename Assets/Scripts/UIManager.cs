@@ -5,6 +5,20 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     public GameObject panelBaseAttack;
     public GameObject panelManaAttack;
     public PlayerMain mana;
@@ -13,13 +27,24 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         manaText.text = mana.mana.ToString();
+
+        if (!(battleSystem.Instance.currentState == battleState.PLAYERTURN))
+        {
+            panelBaseAttack.SetActive(false);
+            panelManaAttack.SetActive(false);
+        }
+    }
+
+    public void HidePanels()
+    {
+        panelBaseAttack.SetActive(false);
+        panelManaAttack.SetActive(false);
     }
 
     public void OnClickPanelBase()
     {
         panelBaseAttack.SetActive(true);
         panelManaAttack.SetActive(false);
-
     }
     public void OnClickPanelMana()
     {

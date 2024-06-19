@@ -24,17 +24,67 @@ public class PlayerMain : MonoBehaviour
     [Header("Boss Reference")]
     public EnemyMain boss;
 
+    [Header("QTE")]
+    [SerializeField] private QTE qte;
+    private int damageToTake;
 
     private void Start()
     {
         currentHealthPlayer = maxHealthPlayer;
-        MegaDamageToEnemy();
+        //MegaDamageToEnemy();
     }
+
+    public void QTE_Return(bool success, bool WasAnAttack)
+    {
+        if (WasAnAttack)
+        {
+            if (success)
+            {
+                damagePlayer = (int)(damagePlayer * 1.1);
+            }
+
+            boss.TakeDamage(damagePlayer);
+            mana += 5;
+            if (mana > 20)
+                mana = 20;
+            if (boss.currentHealthEnemy <= 0)
+            {
+                // victoire
+            }
+            else
+            {
+                // continuer le jeu
+            }
+            battleSystem.Instance.EnemyTurn();
+        }
+        else
+        {
+            if (success)
+            {
+                damageToTake = (int)(damageToTake * 0.8);
+            }
+
+            currentHealthPlayer -= damageToTake;
+            maxHealthPlayer -= damageToTake / 10;
+            healthBarImage.fillAmount = (float)currentHealthPlayer / maxHealthPlayer;
+            if (currentHealthPlayer <= 0)
+            {
+                // stopper le jeu
+            }
+            else
+            {
+                // passer à la phase suivante
+            }
+            battleSystem.Instance.PlayerTurn();
+        }
+    }
+
     private void Update()
     {
         healthBarImage.fillAmount = (float)currentHealthPlayer / maxHealthPlayer;
         ManaImage.fillAmount = (float)mana / 20;
     }
+
     public void damageToEnemy()
     {
         damagePlayer = Random.Range(350, 501);
@@ -42,56 +92,31 @@ public class PlayerMain : MonoBehaviour
         {
             damagePlayer = Mathf.RoundToInt(damagePlayer * (critDamage / 100f));
         }
-        boss.TakeDamage(damagePlayer);
-        mana += 5;
-        if (mana > 20)
-            mana = 20;
-        if (boss.currentHealthEnemy <= 0)
-        {
-            // victoire
-        }
-        else
-        {
-            // continuer le jeu
-        }
+
+        qte.LaunchQTE(this, true, 1.5f, 0.5f, 0.4f);
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealthPlayer -= damage;
-        maxHealthPlayer -= damage * 10 / 100;
-        healthBarImage.fillAmount = (float)currentHealthPlayer / maxHealthPlayer;
-        if (currentHealthPlayer <= 0)
-        {
-            // stopper le jeu
-        }
-        else
-        {
-            // passer à la phase suivante
-        }
+        damageToTake = damage;
+
+        qte.LaunchQTE(this, false, 1f, 0.3f, 0.3f);
     }
 
     public void MegaDamageToEnemy()
     {
         int manaCost = 10;
-        bool hasCrit;
         if (mana - manaCost >= 0)
         {
             mana -= manaCost;
             damagePlayer = Random.Range(800, 1001);
             if (Random.Range(1, 101) <= critRate)
             {
-                hasCrit = true;
-                print(hasCrit);
                 damagePlayer += Mathf.RoundToInt(damagePlayer * (critDamage / 100f));
             }
-            else
-            {
-                hasCrit = false;
-                print(hasCrit);
-            }
-            boss.TakeDamage(damagePlayer);
-            print(damagePlayer);
+
+            qte.LaunchQTE(this, true, 1.5f, 0.5f, 0.4f);
+            //print(damagePlayer);
         }
     }
 
@@ -117,5 +142,6 @@ public class PlayerMain : MonoBehaviour
             if (currentHealthPlayer > maxHealthPlayer)
                 currentHealthPlayer = maxHealthPlayer;
         }
+        battleSystem.Instance.EnemyTurn();
     }
 }

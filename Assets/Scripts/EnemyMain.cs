@@ -7,8 +7,8 @@ public class EnemyMain : MonoBehaviour
     [Header("Health")]
     [SerializeField] private int maxHealthEnemy = 20000;
     public int currentHealthEnemy;
-    [Header("Damage")]
-    [SerializeField] private int damageEnemy;
+    
+    private int damageEnemy;
     [Header("Player")]
     public PlayerMain player;
 
@@ -26,51 +26,32 @@ public class EnemyMain : MonoBehaviour
     public void bossTurn()
     {
         if (currentHealthEnemy > 10000)
-            damageToPlayer();
+            StartCoroutine(damageToPlayer(1));
         else if (currentHealthEnemy > 3000)
-            damageToPlayerFOIS2();
+            StartCoroutine(damageToPlayer(2));
         else
-            HealBoss();
+            StartCoroutine(HealBoss());
     }
-    public void damageToPlayer()
+    public IEnumerator damageToPlayer(int multiplier)
     {
-        damageEnemy = Random.Range(150, 201);
+        yield return new WaitForSeconds(1f);
+
+        damageEnemy = Random.Range(150 * multiplier, 201 * multiplier);
         
         player.TakeDamage(damageEnemy);
-        print("L'ennemi ta mis:" + damageEnemy);
-        print(player.currentHealthPlayer);
-        if (player.currentHealthPlayer <= 0)
-        {
-         //victoire
-        }
-        else
-        {
-            
-        }
     }
-    public void damageToPlayerFOIS2()
+
+    public IEnumerator HealBoss()
     {
-        damageEnemy = Random.Range(300, 401);
-        
-        player.TakeDamage(damageEnemy);
-        print("L'ennemi ta mis:" + damageEnemy);
-        print(player.currentHealthPlayer);
-        if (player.currentHealthPlayer <= 0)
-        {
-         //victoire
-        }
-        else
-        {
-            
-        }
-    }
-    public void HealBoss()
-    {
+        yield return new WaitForSeconds(1f);
+
         int healBoss;
         healBoss = Random.Range(300,1001);
         currentHealthEnemy += healBoss;
         if (currentHealthEnemy > maxHealthEnemy)
             currentHealthEnemy = maxHealthEnemy;
+
+        battleSystem.Instance.PlayerTurn();
     }
     public void TakeDamage(int damage)
     {

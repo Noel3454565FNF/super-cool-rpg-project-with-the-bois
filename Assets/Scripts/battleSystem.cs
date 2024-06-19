@@ -8,16 +8,18 @@ public class battleSystem : MonoBehaviour
 {
     public static battleSystem Instance;
 
-    public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+    //public GameObject playerPrefab;
+    //public GameObject enemyPrefab;
 
-    public Transform playerBattleStation;
-    public Transform enemyBattleStation;
+    //public Transform playerBattleStation;
+    //public Transform enemyBattleStation;
 
     public battleState currentState;
 
+    [SerializeField] private EnemyMain enemyUnit;
 
-    void Start()
+
+    private void Start()
     {
         if(Instance == null)
         {
@@ -31,10 +33,22 @@ public class battleSystem : MonoBehaviour
         SetupBattle();
     }
 
-    void SetupBattle()
+    private void SetupBattle()
     {
-        Instantiate(playerPrefab, playerBattleStation);
-        Instantiate(enemyPrefab, enemyBattleStation);
+        //Instantiate(playerPrefab, playerBattleStation);
+        //Instantiate(enemyPrefab, enemyBattleStation);
+
+        PlayerTurn();
     }
 
+    public void PlayerTurn()
+    {
+        currentState = battleState.PLAYERTURN;
+    }
+
+    public void EnemyTurn()
+    {
+        currentState = battleState.ENEMYTURN;
+        enemyUnit.bossTurn();
+    }
 }
