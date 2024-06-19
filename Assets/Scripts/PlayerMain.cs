@@ -69,6 +69,8 @@ public class PlayerMain : MonoBehaviour
         }
         else
         {
+            StartCoroutine(playerAnim.damageAnim());
+
             if (success)
             {
                 damageToTake = (int)(damageToTake * 0.8);
@@ -119,6 +121,8 @@ public class PlayerMain : MonoBehaviour
 
     public void MegaDamageToEnemy()
     {
+        StartCoroutine(playerAnim.attackAnim());
+
         manaGain = 0;
 
         int manaCost = 10;

@@ -8,7 +8,7 @@ public class ANIMMANAGER : MonoBehaviour
 {
 
     public GameObject gmb;
-    public Animator anim;
+    [SerializeField] private Animator anim;
 
     private string prefName = null;
 
@@ -37,7 +37,6 @@ public class ANIMMANAGER : MonoBehaviour
             }
         }
     }
-
 
     public void returntoidle()
     {
