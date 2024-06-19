@@ -12,6 +12,7 @@ public class PlayerMain : MonoBehaviour
     [Header("Mana")]
     [SerializeField] public int mana = 20;
     public Image ManaImage;
+    private int damageToTake = 0;
 
     [Header("Critic")]
     [SerializeField] private int critRate = 20;
@@ -24,6 +25,61 @@ public class PlayerMain : MonoBehaviour
     [Header("Boss Reference")]
     public EnemyMain boss;
 
+    public void QTE_Return(bool success, bool WasAnAttack)
+    {
+        if (WasAnAttack)
+        {
+            damagePlayer = Random.Range(250, 401);
+            // Ajouter la logique de critique
+            if (Random.Range(1, 101) <= critRate)
+            {
+                damagePlayer = Mathf.RoundToInt(damagePlayer * (critDamage / 100f));
+            }
+
+            if (success)
+            {
+                boss.TakeDamage((int)(damagePlayer * 1.5));
+            }
+            else
+            {
+                boss.TakeDamage(damagePlayer);
+            }
+
+            mana += 5;
+            if (mana > 20)
+                mana = 20;
+            if (boss.currentHealthEnemy <= 0)
+            {
+                // victoire
+            }
+            else
+            {
+                // continuer le jeu
+            }
+        }
+        else
+        {
+            if (success)
+            {
+                currentHealthPlayer -= (int)(damageToTake * 0.66);
+            }
+            else
+            {
+                currentHealthPlayer -= damageToTake;
+            }
+
+            maxHealthPlayer -= damageToTake * 10 / 100;
+            healthBarImage.fillAmount = (float)currentHealthPlayer / maxHealthPlayer;
+            if (currentHealthPlayer <= 0)
+            {
+                // stopper le jeu
+            }
+            else
+            {
+                // passer Ã  la phase suivante
+            }
+        }
+    }
 
     private void Start()
     {
@@ -37,38 +93,13 @@ public class PlayerMain : MonoBehaviour
     }
     public void damageToEnemy()
     {
-        damagePlayer = Random.Range(350, 501);
-        if (Random.Range(1, 101) <= critRate)
-        {
-            damagePlayer = Mathf.RoundToInt(damagePlayer * (critDamage / 100f));
-        }
-        boss.TakeDamage(damagePlayer);
-        mana += 5;
-        if (mana > 20)
-            mana = 20;
-        if (boss.currentHealthEnemy <= 0)
-        {
-            // victoire
-        }
-        else
-        {
-            // continuer le jeu
-        }
+        battleSystem.Instance.qte.LaunchQTE(this, true, 1.5f, 0.5f, 0.4f);
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealthPlayer -= damage;
-        maxHealthPlayer -= damage * 10 / 100;
-        healthBarImage.fillAmount = (float)currentHealthPlayer / maxHealthPlayer;
-        if (currentHealthPlayer <= 0)
-        {
-            // stopper le jeu
-        }
-        else
-        {
-            // passer à la phase suivante
-        }
+        damageToTake = damage;
+        battleSystem.Instance.qte.LaunchQTE(this, false, 1.5f, 0.5f, 0.4f);
     }
 
     public void MegaDamageToEnemy()
