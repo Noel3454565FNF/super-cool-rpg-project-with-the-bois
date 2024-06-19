@@ -25,18 +25,23 @@ public class EnemyMain : MonoBehaviour
     }
     public void bossTurn()
     {
-        if (currentHealthEnemy > 10000)
-            StartCoroutine(damageToPlayer(1));
-        else if (currentHealthEnemy > 3000)
-            StartCoroutine(damageToPlayer(2));
+        if (currentHealthEnemy > 10000) StartCoroutine(damageToPlayer(1));
+
+        else if (currentHealthEnemy > 3000) StartCoroutine(damageToPlayer(2));
+
         else
+        {
             StartCoroutine(HealBoss());
+            StartCoroutine(damageToPlayer(3));
+        }
+            
+
     }
     public IEnumerator damageToPlayer(int multiplier)
     {
         yield return new WaitForSeconds(1f);
 
-        damageEnemy = Random.Range(150 * multiplier, 201 * multiplier);
+        damageEnemy = Random.Range(101 * multiplier, 151 * multiplier);
         
         player.TakeDamage(damageEnemy);
     }
@@ -46,7 +51,7 @@ public class EnemyMain : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         int healBoss;
-        healBoss = Random.Range(300,1001);
+        healBoss = Random.Range(200,401);
         currentHealthEnemy += healBoss;
         if (currentHealthEnemy > maxHealthEnemy)
             currentHealthEnemy = maxHealthEnemy;
