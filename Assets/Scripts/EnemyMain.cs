@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class EnemyMain : MonoBehaviour
 {
     [Header("Health")]
@@ -12,6 +12,13 @@ public class EnemyMain : MonoBehaviour
     [Header("Player")]
     public PlayerMain player;
 
+    public Slider slider;
+
+
+    public void Update()
+    {
+        slider.value = (float)currentHealthEnemy / (float)maxHealthEnemy;
+    }
     private void Start()
     {
         currentHealthEnemy = maxHealthEnemy;

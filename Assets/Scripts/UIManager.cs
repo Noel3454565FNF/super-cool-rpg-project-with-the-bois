@@ -7,13 +7,15 @@ public class UIManager : MonoBehaviour
 {
     public GameObject panelBaseAttack;
     public GameObject panelManaAttack;
-    public PlayerMain Mana;
+
+    public PlayerMain mana;
     public TextMeshProUGUI manaText;
 
-    //private void Update()
-    //{
-    //    manaText.text = Mana.mana.ToString();
-    //}
+    private void Update()
+    {
+        manaText.text = mana.mana.ToString();
+    }
+
     public void OnClickPanelBase()
     {
         panelBaseAttack.SetActive(true);

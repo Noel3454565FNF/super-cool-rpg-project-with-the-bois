@@ -76,7 +76,7 @@ public class PlayerMain : MonoBehaviour
             }
             else
             {
-                // passer à la phase suivante
+                // passer Ã  la phase suivante
             }
         }
     }
@@ -109,12 +109,12 @@ public class PlayerMain : MonoBehaviour
         if (mana - manaCost >= 0)
         {
             mana -= manaCost;
-            damagePlayer = Random.Range(500, 701);
+            damagePlayer = Random.Range(800, 1001);
             if (Random.Range(1, 101) <= critRate)
             {
                 hasCrit = true;
                 print(hasCrit);
-                damagePlayer = Mathf.RoundToInt(damagePlayer * (critDamage / 100f));
+                damagePlayer += Mathf.RoundToInt(damagePlayer * (critDamage / 100f));
             }
             else
             {
@@ -143,7 +143,7 @@ public class PlayerMain : MonoBehaviour
         if (mana - manaCost >= 0)
         {
             mana -= manaCost;
-            healPlayer = Random.Range(50, 501);
+            healPlayer = Random.Range(150, 501);
             currentHealthPlayer += healPlayer;
             if (currentHealthPlayer > maxHealthPlayer)
                 currentHealthPlayer = maxHealthPlayer;
