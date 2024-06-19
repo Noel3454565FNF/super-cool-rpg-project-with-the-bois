@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class EnemyMain : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] private int maxHealthEnemy = 20000;
     public int currentHealthEnemy;
-    [Header("Damage")]
-    [SerializeField] private int damageEnemy;
+    
+    private int damageEnemy;
     [Header("Player")]
     public PlayerMain player;
-    [Header("Battle System Reference")]
-    public battleSystem battleSystem;
 
+    public Slider slider;
+
+
+    public void Update()
+    {
+        slider.value = (float)currentHealthEnemy / (float)maxHealthEnemy;
+    }
     private void Start()
     {
         currentHealthEnemy = maxHealthEnemy;
@@ -21,62 +26,43 @@ public class EnemyMain : MonoBehaviour
     public void bossTurn()
     {
         if (currentHealthEnemy > 10000)
-            damageToPlayer();
+            StartCoroutine(damageToPlayer(1));
         else if (currentHealthEnemy > 3000)
-            damageToPlayerFOIS2();
+            StartCoroutine(damageToPlayer(2));
         else
-            HealBoss();
+            StartCoroutine(HealBoss());
     }
-    public void damageToPlayer()
+    public IEnumerator damageToPlayer(int multiplier)
     {
-        damageEnemy = Random.Range(150, 201);
+        yield return new WaitForSeconds(1f);
+
+        damageEnemy = Random.Range(150 * multiplier, 201 * multiplier);
         
         player.TakeDamage(damageEnemy);
-        print("L'ennemi ta mis:" + damageEnemy);
-        print(player.currentHealthPlayer);
-        if (player.currentHealthPlayer <= 0)
-        {
-            battleSystem.EndLost();
-        }
-        else
-        {
-            battleSystem.PlayerTurn();
-        }
     }
-    public void damageToPlayerFOIS2()
+
+    public IEnumerator HealBoss()
     {
-        damageEnemy = Random.Range(300, 401);
-        
-        player.TakeDamage(damageEnemy);
-        print("L'ennemi ta mis:" + damageEnemy);
-        print(player.currentHealthPlayer);
-        if (player.currentHealthPlayer <= 0)
-        {
-            battleSystem.EndLost();
-        }
-        else
-        {
-            battleSystem.PlayerTurn();
-        }
-    }
-    public void HealBoss()
-    {
+        yield return new WaitForSeconds(1f);
+
         int healBoss;
         healBoss = Random.Range(300,1001);
         currentHealthEnemy += healBoss;
         if (currentHealthEnemy > maxHealthEnemy)
             currentHealthEnemy = maxHealthEnemy;
+
+        battleSystem.Instance.PlayerTurn();
     }
     public void TakeDamage(int damage)
     {
         currentHealthEnemy -= damage;
         if(currentHealthEnemy <= 0)
         {
-            battleSystem.EndWon();
+            //stopper le jeu
         }
         else
         {
-            battleSystem.EnemyTurn();
+            //passer à la phase suivante
         }
     }
 

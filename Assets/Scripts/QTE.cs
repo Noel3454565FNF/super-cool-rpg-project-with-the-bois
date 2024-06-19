@@ -19,14 +19,22 @@ public class QTE : MonoBehaviour
         }
     }
 
+    [SerializeField] private GameObject qte;
     [SerializeField] private RectTransform Background;
     private float width;
     [SerializeField] private RectTransform GreenZone;
     [SerializeField] private RectTransform Slider;
     private float SliderWidth;
 
-    public void LaunchQTE(PlayerUnit PU, bool isAnAttack, float TimeEnd, float QTETimeStart, float Duration)
+    public void LaunchQTE(PlayerMain PU, bool isAnAttack, float TimeEnd, float QTETimeStart, float Duration)
     {
+        Debug.Log("Launched");
+
+        UIManager.Instance.HidePanels();
+        qte.SetActive(true);
+
+        Debug.Log("QTE activated");
+
         SliderWidth = Slider.rect.width;
         width = Background.rect.width;
         GreenZone.offsetMin = new Vector2(QTETimeStart / TimeEnd * width, 0);
@@ -34,7 +42,7 @@ public class QTE : MonoBehaviour
         StartCoroutine(QTeCoroutine(PU, isAnAttack, TimeEnd, QTETimeStart, Duration));
     }
 
-    private IEnumerator QTeCoroutine(PlayerUnit PU, bool isAnAttack, float TimeEnd, float QTETimeStart, float Duration)
+    private IEnumerator QTeCoroutine(PlayerMain PU, bool isAnAttack, float TimeEnd, float QTETimeStart, float Duration)
     {
         float avancement = 0;
         float timer = 0;
@@ -47,7 +55,7 @@ public class QTE : MonoBehaviour
             timer += Time.deltaTime;
             avancement = timer / TimeEnd;
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 SpaceHasBeenClicked = true;
                 if (timer > QTETimeStart && timer < QTETimeStart + Duration)
@@ -65,5 +73,6 @@ public class QTE : MonoBehaviour
         {
             PU.QTE_Return(false, isAnAttack);
         }
+        qte.SetActive(false);
     }
 }
