@@ -10,7 +10,7 @@ public class PlayerMain : MonoBehaviour
     [Header("Damage")]
     [SerializeField] private int damagePlayer;
     [Header("Mana")]
-    [SerializeField] private int mana = 20;
+    [SerializeField] public int mana = 20;
     public Image ManaImage;
     private int damageToTake = 0;
 

@@ -358,7 +358,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1610435101}
+      - m_Target: {fileID: 1610435103}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnClickPanelMana
         m_Mode: 1
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1610435101}
+      - m_Target: {fileID: 1610435103}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnClickPanelBase
         m_Mode: 1
@@ -2568,7 +2568,7 @@ GameObject:
   - component: {fileID: 1610435099}
   - component: {fileID: 1610435098}
   - component: {fileID: 1610435097}
-  - component: {fileID: 1610435101}
+  - component: {fileID: 1610435103}
   - component: {fileID: 1610435102}
   m_Layer: 5
   m_Name: Canvas
@@ -2668,23 +2668,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1610435101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1610435096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6886136fd89f484e9c4f1b9074ac759, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  playerAttackDamage: 10
-  bossAttackDamage: 15
-  attackInterval: 1
-  nextAttackTime: 0
 --- !u!114 &1610435102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2700,6 +2683,22 @@ MonoBehaviour:
   Background: {fileID: 797122681}
   GreenZone: {fileID: 1166224400}
   Slider: {fileID: 2138956465}
+--- !u!114 &1610435103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610435096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6886136fd89f484e9c4f1b9074ac759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelBaseAttack: {fileID: 2081367855}
+  panelManaAttack: {fileID: 1373149861}
+  Mana: {fileID: 0}
+  manaText: {fileID: 0}
 --- !u!1 &1673231736
 GameObject:
   m_ObjectHideFlags: 0
