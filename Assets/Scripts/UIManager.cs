@@ -23,10 +23,12 @@ public class UIManager : MonoBehaviour
     public GameObject panelManaAttack;
     public PlayerMain mana;
     public TextMeshProUGUI manaText;
+    public TextMeshProUGUI healText;
 
     private void Update()
     {
         manaText.text = mana.mana.ToString();
+        healText.text = mana.currentHealthPlayer.ToString();
 
         if (!(battleSystem.Instance.currentState == battleState.PLAYERTURN))
         {
