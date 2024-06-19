@@ -44,9 +44,11 @@ public class EnemyMain : MonoBehaviour
 
     public IEnumerator damageToPlayer(int multiplier)
     {
+        yield return new WaitForSeconds(2f);
+
         StartCoroutine(enemyAnim.attackAnim());
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         damageEnemy = Random.Range(101 * multiplier, 151 * multiplier);
         
@@ -67,6 +69,8 @@ public class EnemyMain : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        StartCoroutine(enemyAnim.damageAnim());
+
         currentHealthEnemy -= damage;
         if(currentHealthEnemy <= 0)
         {

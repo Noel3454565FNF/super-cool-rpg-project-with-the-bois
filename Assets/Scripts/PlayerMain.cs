@@ -77,6 +77,7 @@ public class PlayerMain : MonoBehaviour
             currentHealthPlayer -= damageToTake;
             maxHealthPlayer -= damageToTake / 10;
             healthBarImage.fillAmount = (float)currentHealthPlayer / maxHealthPlayer;
+            playerAnim.damageAnim();
             if (currentHealthPlayer <= 0)
             {
                 // stopper le jeu
@@ -97,7 +98,7 @@ public class PlayerMain : MonoBehaviour
 
     public void damageToEnemy()
     {
-        //StartCoroutine(playerAnim.attackAnim());
+        StartCoroutine(playerAnim.attackAnim());
         manaGain = 5;
 
         damagePlayer = Random.Range(350, 501);
