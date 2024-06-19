@@ -42,6 +42,7 @@ public class PlayerMain : MonoBehaviour
             if (success)
             {
                 damagePlayer = (int)(damagePlayer * 1.1);
+                manaGain = 8;
             }
 
             boss.TakeDamage(damagePlayer);
