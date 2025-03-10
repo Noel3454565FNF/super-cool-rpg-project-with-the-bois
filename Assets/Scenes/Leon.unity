@@ -778,7 +778,7 @@ MonoBehaviour:
   currentHealthEnemy: 0
   player: {fileID: 1673231737}
   slider: {fileID: 664228805}
-  enemyAnim: {fileID: 0}
+  enemyAnim: {fileID: 1860308568}
 --- !u!4 &1860308564
 Transform:
   m_ObjectHideFlags: 0
